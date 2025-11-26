@@ -1,0 +1,7 @@
+server:
+  port: 8083
+  address: 0.0.0.0
+
+user:
+  service:
+    url: localhost:8080
