@@ -10,6 +10,7 @@ import org.example.paymentservice.security.CustomUserDetails;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,12 +27,13 @@ public class PaymentService {
         return paymentMapper.toDTOs(paymentRepository.findAllByUserId(id));
     }
 
+    @Transactional
     public PaymentDTO addPayment(PaymentDTO paymentDTO) {
-        Payment order = paymentMapper.toEntity(paymentDTO);
+        Payment payment = paymentMapper.toEntity(paymentDTO);
         Long id = ((CustomUserDetails) Objects.requireNonNull(Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getPrincipal())).getId();
-        order.setUserId(id);
-        PaymentDTO dto = paymentMapper.toDTO(paymentRepository.save(order));
-        orderClient.payForOrder(order.getId());
+        payment.setUserId(id);
+        PaymentDTO dto = paymentMapper.toDTO(paymentRepository.save(payment));
+        orderClient.payForOrder(payment.getOrderID());
         return dto;
     }
 }
