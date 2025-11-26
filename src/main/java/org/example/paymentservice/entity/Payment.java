@@ -16,7 +16,7 @@ public class Payment {
 
     private PaymentMethod paymentMethod;
 
-    private Long orderID;
+    private Long orderId;
 
     private Long userId;
 

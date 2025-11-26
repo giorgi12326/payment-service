@@ -33,7 +33,7 @@ public class PaymentService {
         Long id = ((CustomUserDetails) Objects.requireNonNull(Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getPrincipal())).getId();
         payment.setUserId(id);
         PaymentDTO dto = paymentMapper.toDTO(paymentRepository.save(payment));
-        orderClient.payForOrder(dto.getOrderID());
+        orderClient.payForOrder(dto.getOrderId());
         return dto;
     }
 }
