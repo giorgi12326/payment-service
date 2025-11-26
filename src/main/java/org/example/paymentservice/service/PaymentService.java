@@ -32,9 +32,6 @@ public class PaymentService {
     @Transactional
     public PaymentDTO addPayment(PaymentDTO paymentDTO) {
         OrderDTO orderDTOResponseEntity = orderClient.payForOrder(paymentDTO.getOrderId());
-        if(orderDTOResponseEntity.getStatus().equals("PAID")) {
-            throw new ConflictException("Payment is already paid");
-        }
 
         Payment payment = paymentMapper.toEntity(paymentDTO);
         Long id = ((CustomUserDetails) Objects.requireNonNull(Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getPrincipal())).getId();
