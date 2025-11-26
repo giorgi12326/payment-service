@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "order-service", url = "${order.service.url}")
 public interface OrderClient {
     @PostMapping("/api/{id}")
-    ResponseEntity<OrderDTO> payForOrder(@PathVariable Long id);
+    OrderDTO payForOrder(@PathVariable Long id);
 }
