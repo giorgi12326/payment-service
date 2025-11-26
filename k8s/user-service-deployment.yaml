@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-deploy
+  template:
+    metadata:
+      labels:
+        app: payment-deploy
+    spec:
+      containers:
+        - name: payment-service
+          image: payment-service-image:COMMIT_HASH
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: postgres-0.postgres   # points to primary pod
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: myuser
+            - name: DB_PASSWORD
+              value: mypassword
+            - name: DB_NAME
+              value: mydb
