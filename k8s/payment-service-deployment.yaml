@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_HOST
-              value: postgres-0.postgres   # points to primary pod
+              value: postgres3-0.postgres3   # points to primary pod
             - name: DB_PORT
               value: "5432"
             - name: DB_USER
@@ -29,3 +29,7 @@ spec:
               value: mypassword
             - name: DB_NAME
               value: mydb
+            - name: USER_SERVICE_URL
+              value: "http://user-service:8080"
+            - name: ORDER_SERVICE_URL
+              value: "http://order-service:8080"

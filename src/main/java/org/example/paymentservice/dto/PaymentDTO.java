@@ -21,7 +21,7 @@ public class PaymentDTO {
 
     private Long userId;
 
-    private Long orderID;
+    private Long orderId;
 
     private LocalDateTime createdAt;
 }

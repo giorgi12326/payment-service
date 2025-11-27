@@ -25,5 +25,4 @@ public class PaymentController {
     public ResponseEntity<PaymentDTO> addPayment(@RequestBody @Validated PaymentDTO paymentDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentService.addPayment(paymentDTO));
     }
-
 }

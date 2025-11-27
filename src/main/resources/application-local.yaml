@@ -5,3 +5,7 @@ server:
 user:
   service:
     url: localhost:8080
+
+order:
+  service:
+    url: localhost:8082
